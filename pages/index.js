@@ -12,7 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Image className='-z-10 absolute hidden md:grid md:object-cover' src={BackgroundImage} alt='splash-image'></Image>
+      <Image className='-z-10 absolute hidden md:grid md:object-cover h-screen' src={BackgroundImage} alt='splash-image'></Image>
       <main className='bg-black h-screen flex flex-col pl-5 md:pl-14 z-10 md:bg-opacity-80'>
         <div className='flex justify-end'>
           <div className='text-gray-500 font-bold text-xs md:text-md pr-5 pt-2 cursor-pointer hover:text-yellow-600 duration-300 w-fit font-montserrat'>
