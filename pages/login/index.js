@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { TEST_URL, LOGIN } from "../utils/constants";
+import { useRouter } from "next/router";
 
 function Login() {
   const [state, setState] = useState("active");
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
   return (
     <main className="bg-black h-screen flex flex-col items-center justify-start">
       <div className="pt-20 max-w-lg flex flex-col justify-start items-start">
@@ -23,6 +25,7 @@ function Login() {
             Username
           </div>
           <input
+            disabled={state === "submitting"}
             onChange={(e) => {
               setUserName(e.target.value);
               setError("");
@@ -34,6 +37,8 @@ function Login() {
             Password
           </div>
           <input
+            type="password"
+            disabled={state === "submitting"}
             onChange={(e) => {
               setPassword(e.target.value);
               setError("");
@@ -50,7 +55,7 @@ function Login() {
             {state === "active" ? (
               <div
                 onClick={() => {
-                  handleSubmit(setState, setError);
+                  handleSubmit(setState, setError, username, password, router);
                 }}
                 className="font-extrabold text-black text-center cursor-pointer"
               >
@@ -59,7 +64,7 @@ function Login() {
             ) : (
               <div
                 onClick={() => {}}
-                className="font-extrabold text-neutral-400 text-center cursor-pointer"
+                className="font-extrabold text-black text-center cursor-pointer"
               >
                 Submitting
               </div>
@@ -80,17 +85,36 @@ function Login() {
   );
 }
 
-async function handleSubmit(setState, setError) {
+async function handleSubmit(setState, setError, userName, password, router) {
   setState("submitting");
   setError("");
+  const userDetails = {
+    username: userName,
+    password: password,
+  };
   try {
-    const data = await fetch(TEST_URL + LOGIN, { method: "POST" });
+    const data = await fetch(TEST_URL + LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        body: JSON.stringify(userDetails),
+      },
+    });
     if (!data.ok) {
       throw new Error();
     }
+
     const string = await data.json();
     console.log(string);
+
+    if (string.isExist == true) {
+      //console.log("in routing");
+      router.push("/student");
+    } else {
+      throw new Error();
+    }
   } catch (e) {
+    console.log(e);
     setError("Invalid username/password. Please try again..");
   }
   setState("active");
