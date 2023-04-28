@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import style from "./modal.module.css";
 import { STUDENTS, TEST_URL } from "../utils/constants";
+import { StudentsDispatchContext } from "../utils/contexts";
 
 function AddStudentModal({ show, onClose }) {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -9,6 +10,7 @@ function AddStudentModal({ show, onClose }) {
   const [students, setStudents] = useState(null);
   const [filteredStudents, setFilteredStudents] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
+  const dispatch = useContext(StudentsDispatchContext);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -45,12 +47,21 @@ function AddStudentModal({ show, onClose }) {
                         <div
                           onClick={() => {
                             if (!selectedStudents.includes(student.userId)) {
+                              dispatch({
+                                type: "add",
+                                userId: student.userId,
+                                personName: student.personName,
+                              });
                               selectedStudents.push(student.userId);
                             } else {
                               selectedStudents.splice(
                                 selectedStudents.indexOf(student.userId),
                                 1
                               );
+                              dispatch({
+                                type: "remove",
+                                userId: student.userId,
+                              });
                             }
                             let newSelectedStudents = [...selectedStudents];
                             setFilteredStudents(filteredStudents);
