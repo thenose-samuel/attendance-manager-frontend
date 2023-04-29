@@ -106,13 +106,13 @@ function AddStudentModal({ show, onClose }) {
                     onClick={() => {
                       onClose();
                     }}
-                    className="text-red-400 font-bold text-xs pr-4 cursor-pointer hover:text-red-600 duration-200"
+                    className="text-yellow-600 font-bold text-xs pr-4 cursor-pointer hover:text-green-400 duration-200"
                   >
-                    CANCEL
-                  </div>
-                  <div className="text-yellow-400 font-bold text-xs pr-4 cursor-pointer hover:text-yellow-600 duration-200">
                     DONE
                   </div>
+                  {/* <div className="text-yellow-400 font-bold text-xs pr-4 cursor-pointer hover:text-yellow-600 duration-200">
+                    DONE
+                  </div> */}
                 </div>
               </div>
             </div>

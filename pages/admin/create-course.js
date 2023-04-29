@@ -8,12 +8,18 @@ import {
   StudentsDispatchContext,
 } from "../utils/contexts";
 import AddFacultyModal from "./add-faculty-modal";
+import { CREATE_COURSE, TEST_URL } from "../utils/constants";
 
 export default function CreateCourse() {
+  const [error, setError] = useState(false);
   const [addStudent, setAddStudent] = useState(false);
   const [addFaculty, setAddFaculty] = useState(false);
+  const [courseName, setCourseName] = useState("");
+  const [courseCode, setCourseCode] = useState("");
   const [students, studentDispatch] = useReducer(studentReducer, []);
   const [faculty, facultyDispatch] = useReducer(facultyReducer, []);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
   return (
     <FacultiesDispatchContext.Provider value={facultyDispatch}>
       <FacultiesContext.Provider value={faculty}>
@@ -34,6 +40,11 @@ export default function CreateCourse() {
                         Course Name
                       </div>
                       <input
+                        onChange={(e) => {
+                          setCourseName(e.target.value);
+                          setError(false);
+                          setSuccess(false);
+                        }}
                         placeholder="Enter course name"
                         className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                       ></input>
@@ -41,43 +52,85 @@ export default function CreateCourse() {
                         Course ID
                       </div>
                       <input
+                        onChange={(e) => {
+                          setCourseCode(e.target.value);
+                          setError(false);
+                          setSuccess(false);
+                        }}
                         placeholder="Enter course ID"
                         className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                       ></input>
-                      {/* <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">Year of Enrollment</div> */}
-                      {/* <input placeholder="Enter your password" className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"></input> */}
-                      {/* <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
-                  Student ID
-                </div>
-                <input
-                  placeholder="Enter your password"
-                  className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
-                ></input> */}
-                      {/* <input class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent ..."></input> */}
-                      {/* <div className="p-3 rounded-xl mt-6 bg-gradient-to-r duration-300 hover:rounded-md bg-yellow-400">
-                        <div className="font-extrabold text-black text-center cursor-pointer">Log In</div>
-                    </div> */}
-                      {/* <div className="text-neutral-600  font-medium text-center pt-4 text-xs">Account doesn't exist? <span className="text-yellow-600 cursor-pointer text-xs">Contact Admin.</span></div> */}
-
-                      <div
-                        onClick={() => setAddFaculty(true)}
-                        className="text-xs font-bold pt-6 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
-                      >
-                        Add Faculty
+                      <div className="flex">
+                        <div
+                          onClick={() => setAddFaculty(true)}
+                          className="text-xs font-bold pt-6 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
+                        >
+                          Add Faculty
+                        </div>
+                        <div className="text-xs font-bold pt-6 pl-3 text-neutral-500">
+                          {faculty.length} added.
+                        </div>
+                      </div>
+                      <div className="flex">
+                        <div
+                          onClick={() => setAddStudent(true)}
+                          className="text-xs font-bold pt-4 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
+                        >
+                          Add Student
+                        </div>
+                        <div className="text-xs font-bold pt-4 pl-3 text-neutral-500">
+                          {students.length} added.
+                        </div>
                       </div>
                       <div
-                        onClick={() => setAddStudent(true)}
-                        className="text-xs font-bold pt-4 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
+                        onClick={() => {
+                          createCourse(
+                            courseName,
+                            courseCode,
+                            students,
+                            faculty,
+                            submitting,
+                            setError,
+                            setSuccess,
+                            setSubmitting
+                          );
+                        }}
+                        className={`${
+                          submitting ? "bg-neutral-700" : "bg-yellow-500"
+                        } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black`}
                       >
-                        Add Students
+                        {submitting ? "Wait" : "Submit"}
                       </div>
+                      {error ? (
+                        <div className="text-red-400 mt-5 text-xs font-bold">
+                          Invalid input, please check the fields and submit
+                          again.
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                      {success ? (
+                        <div className="text-green-400 mt-5 text-xs font-bold">
+                          Course has been created successfully.
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                       <AddStudentModal
                         show={addStudent}
-                        onClose={() => setAddStudent(false)}
+                        onClose={() => {
+                          setAddStudent(false);
+                          setError(false);
+                          setSuccess(false);
+                        }}
                       />
                       <AddFacultyModal
                         show={addFaculty}
-                        onClose={() => setAddFaculty(false)}
+                        onClose={() => {
+                          setAddFaculty(false);
+                          setError(false);
+                          setSuccess(false);
+                        }}
                       />
                     </div>
                   </div>
@@ -90,6 +143,52 @@ export default function CreateCourse() {
       </FacultiesContext.Provider>
     </FacultiesDispatchContext.Provider>
   );
+}
+
+async function createCourse(
+  courseName,
+  courseCode,
+  students,
+  faculty,
+  submitting,
+  setError,
+  setSuccess,
+  setSubmitting
+) {
+  if (submitting === true) return;
+  setSubmitting(true);
+  if (
+    courseName.length < 1 ||
+    courseCode.length < 1 ||
+    students.length < 1 ||
+    faculty.length < 1
+  ) {
+    setError(true);
+    return;
+  }
+  try {
+    const courseDetails = {
+      courseName,
+      courseCode,
+      students,
+      faculty,
+    };
+    const response = await fetch(TEST_URL + CREATE_COURSE, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(courseDetails),
+    });
+    const data = await response.json();
+    if (data.status === "success") {
+      setSuccess(true);
+    } else {
+      setError(true);
+    }
+  } catch (e) {
+    setError(true);
+    console.log(e);
+  }
+  setSubmitting(false);
 }
 
 function facultyReducer(faculty, action) {

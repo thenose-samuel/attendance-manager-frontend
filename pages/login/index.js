@@ -97,8 +97,8 @@ async function handleSubmit(setState, setError, userName, password, router) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        body: JSON.stringify(userDetails),
       },
+      body: JSON.stringify(userDetails),
     });
     if (!data.ok) {
       throw new Error();
