@@ -105,7 +105,7 @@ async function handleSubmit(setState, setError, userName, password, router) {
     }
 
     const string = await data.json();
-    console.log(string);
+    //console.log(string);
 
     if (string.isExist == true) {
       //console.log("in routing");

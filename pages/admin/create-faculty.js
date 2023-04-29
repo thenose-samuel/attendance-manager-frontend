@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./form.module.css";
-import { CREATE_STUDENT, TEST_URL } from "../utils/constants";
+import { CREATE_FACULTY, CREATE_STUDENT, TEST_URL } from "../utils/constants";
 
 export default function CreateStudent() {
   const [name, setName] = useState("");
@@ -16,15 +16,15 @@ export default function CreateStudent() {
         <div className="h-screen bg-neutral-900 w-96 pl-6 pr-6 pt-4 border-neutral-800 border-solid border-x-2">
           <div>
             <div className="font-extrabold text-2xl text-neutral-200">
-              Create Student
+              Create Faculty
             </div>
             <div className="text-xs text-neutral-500 font-regular">
-              Enter student details
+              Enter faculty details
             </div>
             <div className="pt-6">
               <div className="flex flex-col">
                 <div className="text-neutral-400 text-xs font-medium pb-2 placeholder:text-neutral-300">
-                  Student Name
+                  Faculty Name
                 </div>
                 <input
                   onChange={(e) => {
@@ -32,11 +32,11 @@ export default function CreateStudent() {
                     setError("");
                     setSuccess("");
                   }}
-                  placeholder="Enter the student's name"
+                  placeholder="Enter the faculty's name"
                   className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
                 <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
-                  Student ID
+                  Faculty ID
                 </div>
                 <input
                   onChange={(e) => {
@@ -44,7 +44,7 @@ export default function CreateStudent() {
                     setError("");
                     setSuccess("");
                   }}
-                  placeholder="Enter the student's ID"
+                  placeholder="Enter the faculty's ID"
                   className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
                 <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
@@ -119,9 +119,9 @@ async function createUser(
   setSubmitting
 ) {
   if (submitting === true) return;
-  setSubmitting(true);
   setSuccess("");
   setError("");
+  setSubmitting(true);
   if (
     name.length < 1 ||
     id.length < 1 ||
@@ -143,7 +143,7 @@ async function createUser(
       id,
       password,
     };
-    const response = await fetch(TEST_URL + CREATE_STUDENT, {
+    const response = await fetch(TEST_URL + CREATE_FACULTY, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

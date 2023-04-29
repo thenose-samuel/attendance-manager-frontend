@@ -4,3 +4,5 @@ export const LOGIN = "/login";
 export const STUDENTS = "/students";
 export const FACULTIES = "/faculties";
 export const CREATE_COURSE = "/createCourse";
+export const CREATE_STUDENT = "/student";
+export const CREATE_FACULTY = "/faculty";
