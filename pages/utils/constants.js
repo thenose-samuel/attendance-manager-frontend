@@ -6,3 +6,4 @@ export const FACULTIES = "/faculties";
 export const CREATE_COURSE = "/createCourse";
 export const CREATE_STUDENT = "/student";
 export const CREATE_FACULTY = "/faculty";
+export const GET_COURSES = "/getCourses";

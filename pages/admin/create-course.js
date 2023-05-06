@@ -164,7 +164,7 @@ async function createCourse(
     faculty.length < 1
   ) {
     setError(true);
-    setSubmitting(true);
+    setSubmitting(false);
     return;
   }
   try {
