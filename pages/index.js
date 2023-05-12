@@ -26,7 +26,7 @@ export default function Home() {
         <div>
           <div
             id="intro"
-            className="md:pt-24 text-4xl md:text-6xl max-w-2xl font-montserrat font-extrabold text-gray-300"
+            className="pt-24 md:pt-24 text-4xl md:text-6xl max-w-2xl font-montserrat font-extrabold text-gray-300"
           >
             Attendance management for the modern classroom
           </div>

@@ -138,17 +138,18 @@ async function createUser(
     return;
   }
   try {
-    const studentDetails = {
-      name,
-      id,
+    const facultyDetails = {
+      personName: name,
+      userId: id,
       password,
+      designation: "faculty",
     };
     const response = await fetch(TEST_URL + CREATE_FACULTY, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(studentDetails),
+      body: JSON.stringify(facultysDetails),
     });
     const data = await response.json();
     if (data.status === "success") {

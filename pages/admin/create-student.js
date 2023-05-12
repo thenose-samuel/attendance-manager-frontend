@@ -139,9 +139,10 @@ async function createUser(
   }
   try {
     const studentDetails = {
-      name,
-      id,
+      personName: name,
+      userId: id,
       password,
+      designation: "student",
     };
     const response = await fetch(TEST_URL + CREATE_STUDENT, {
       method: "POST",
