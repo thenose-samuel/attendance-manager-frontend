@@ -8,7 +8,7 @@ import {
   StudentsDispatchContext,
 } from "../utils/contexts";
 import AddFacultyModal from "./add-faculty-modal";
-import { CREATE_COURSE, TEST_URL } from "../utils/constants";
+import { BASE_URL, CREATE_COURSE, TEST_URL } from "../utils/constants";
 
 export default function CreateCourse() {
   const [error, setError] = useState(false);
@@ -168,13 +168,26 @@ async function createCourse(
     return;
   }
   try {
+    setError(false);
+
+
+    const sids = [];
+    students.forEach((element) => {
+      sids.push(element.userId);
+    });
+    const fids = [];
+    faculty.forEach((element) => {
+      fids.push(element.userId);
+    });
+
     const courseDetails = {
       courseName,
       courseCode,
-      students,
-      faculty,
+      students: sids,
+      faculty: fids,
     };
-    const response = await fetch(TEST_URL + CREATE_COURSE, {
+
+    const response = await fetch(BASE_URL + CREATE_COURSE, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(courseDetails),

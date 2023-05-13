@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import style from "./modal.module.css";
-import { FACULTIES, TEST_URL } from "../utils/constants";
+import { BASE_URL, FACULTIES, TEST_URL } from "../utils/constants";
 import { FacultiesDispatchContext } from "../utils/contexts";
 
 function AddFacultyModal({ show, onClose }) {
@@ -150,13 +150,13 @@ async function getStudents(
   //if (students != null) return;
   setFetching(true);
   try {
-    const response = await fetch(TEST_URL + FACULTIES, {
+    const response = await fetch(BASE_URL + FACULTIES, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-    setStudents([data]);
-    setFilteredStudents([data]);
+    setStudents([data.facultyData]);
+    setFilteredStudents([data.facultyData]);
   } catch (e) {
     console.log("Error: ", e);
   }

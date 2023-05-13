@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./form.module.css";
-import { CREATE_STUDENT, TEST_URL } from "../utils/constants";
+import { BASE_URL, CREATE_STUDENT, TEST_URL } from "../utils/constants";
 
 export default function CreateStudent() {
   const [name, setName] = useState("");
@@ -144,15 +144,16 @@ async function createUser(
       password,
       designation: "student",
     };
-    const response = await fetch(TEST_URL + CREATE_STUDENT, {
+    const response = await fetch(BASE_URL + CREATE_STUDENT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      mode: "cors",
       body: JSON.stringify(studentDetails),
     });
     const data = await response.json();
-    if (data.status === "success") {
+    if (data.status === "Successful") {
       setSuccess("User has been created.");
     } else {
       setError(data.status);
