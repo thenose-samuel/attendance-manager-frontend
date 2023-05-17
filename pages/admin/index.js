@@ -11,7 +11,7 @@ export default function Home() {
         <div className="w-80 rounded-lg bg-neutral-900">
           <div
             onClick={() => {
-              router.push("/admin/create-student");
+              router.push("/admin/create-course");
             }}
             id="button"
             className="p-3 border-b-2 border-neutral-800 hover:bg-yellow-600 rounded-t-lg duration-300 cursor-pointer text-neutral-300 hover:text-black"
@@ -23,6 +23,9 @@ export default function Home() {
 
           {/* <div id="sized-box" className="h-3 bg-neutral-9"></div> */}
           <div
+            onClick={() => {
+              router.push("/admin/create-faculty");
+            }}
             id="button"
             className="p-3 border-b-2 text-neutral-300 border-neutral-800 cursor-pointer hover:bg-yellow-600 hover:text-black duration-300"
           >
@@ -32,6 +35,9 @@ export default function Home() {
           </div>
 
           <div
+            onClick={() => {
+              router.push("/admin/create-student");
+            }}
             id="button"
             className="p-3 text-neutral-300 hover:bg-yellow-600 rounded-b-lg duration-300 hover:text-black"
           >
@@ -41,6 +47,9 @@ export default function Home() {
           </div>
         </div>
         <div
+          onClick={() => {
+            router.push("/");
+          }}
           id="button"
           className="p-3 hover:bg-red-700 rounded-lg duration-300 mt-2 text-red-500 hover:text-neutral-200 cursor-pointer"
         >
