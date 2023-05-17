@@ -16,7 +16,7 @@ function Login() {
             Log In
           </div>
           <div className="text-neutral-500 font-medium text-xs pt-10 pb-6">
-            Enter you account details under.
+            Enter your account details under.
           </div>
           <div
             className="text-neutral-400 text-xs font-medium pb-2 placeholder:text-neutral-300"
