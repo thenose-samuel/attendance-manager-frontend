@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
 import style from "./font.module.css";
-import { GET_COURSES, TEST_URL } from "../utils/constants";
+import { BASE_URL, GET_COURSES, TEST_URL } from "../utils/constants";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Faculty() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [courses, setCourses] = useState([]);
+  const router = useRouter();
+  //const { faculty } = router.query.slug;
 
   useEffect(() => {
     setError("");
-    fetchCourses();
+    fetchCourses(`${router.query.faculty}`);
+    console.log(router.query.faculty);
   }, []);
 
-  async function fetchCourses() {
+  async function fetchCourses(fac) {
+    const facId = { fac };
     setLoading(true);
     try {
-      const response = await fetch(TEST_URL + GET_COURSES, {
-        method: "GET",
+      const response = await fetch(BASE_URL + GET_COURSES, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(facId),
       });
       const data = await response.json();
-      setCourses(data);
+      setCourses(data.List);
       setError("");
       setLoading(false);
     } catch (e) {
@@ -43,47 +53,44 @@ export default function Faculty() {
                 Select Course to Mark Attendance
               </div>
               <div className="w-80 rounded-lg bg-neutral-900">
+                {courses.length == 0 ? (
+                  <div className="text-center">
+                    No courses registered for this faculty
+                  </div>
+                ) : (
+                  <></>
+                )}
+
                 {courses.map((course) => {
                   return (
-                    <div
-                      id="button"
-                      className="p-3 border-b-2 border-neutral-800 hover:bg-yellow-600  duration-300 cursor-pointer text-neutral-300 hover:text-black"
+                    <Link
+                      href={`faculty/course/?course=${course.courseCode}&faculty=${router.query.faculty}`}
                     >
-                      <div className="font-montserrat text-sm font-medium">
-                        {course.name}
+                      <div
+                        id="button"
+                        className="p-3 border-b-2 border-neutral-800 hover:bg-yellow-600  duration-300 cursor-pointer text-neutral-300 hover:text-black"
+                      >
+                        <div className="font-montserrat text-sm font-medium">
+                          {course.courseName}
+                        </div>
+                        <div className="font-montserrat text-xs font-medium text-neutral-700">
+                          {course.courseCode}
+                        </div>
                       </div>
-                      <div className="font-montserrat text-xs font-medium text-neutral-700">
-                        {course.cid}
-                      </div>
-                    </div>
+                    </Link>
                   );
                 })}
-                {/* <div
-                  id="button"
-                  className="p-3 border-b-2 text-neutral-300 border-neutral-800 cursor-pointer hover:bg-yellow-600 hover:text-black duration-300"
-                >
-                  <div className=" font-montserrat text-sm font-medium">
-                    Create Faculty
-                  </div>
-                </div> */}
-
-                {/* <div
-                  id="button"
-                  className="p-3 text-neutral-300 hover:bg-yellow-600 rounded-b-lg duration-300 hover:text-black"
-                >
-                  <div className=" font-montserrat text-sm cursor-pointer font-medium">
-                    Create Student
-                  </div>
-                </div> */}
               </div>
-              <div
-                id="button"
-                className="p-3 hover:bg-red-700 rounded-lg duration-300 mt-2 text-red-500 hover:text-neutral-200 cursor-pointer"
-              >
-                <div className=" font-montserrat text-sm  font-medium ">
-                  Log Out
+              <Link href={"/login"}>
+                <div
+                  id="button"
+                  className="p-3 hover:bg-red-700 rounded-lg duration-300 mt-2 text-red-500 hover:text-neutral-200 cursor-pointer"
+                >
+                  <div className=" font-montserrat text-sm  font-medium ">
+                    Log Out
+                  </div>
                 </div>
-              </div>
+              </Link>
               <div className="text-neutral-700 text-xs pt-2">
                 You're currently in the faculty panel.
               </div>

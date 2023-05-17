@@ -3,29 +3,66 @@ import style from "../font.module.css";
 import Attendance from "./attendance";
 import { Breathing, Shimmer } from "react-shimmer";
 import ShimmerSkeleton from "./shimmer";
-import { GET_REGISTERED_STUDENTS, TEST_URL } from "@/pages/utils/constants";
+import {
+  ADD_ATTENDANCE,
+  BASE_URL,
+  GET_REGISTERED_STUDENTS,
+  TEST_URL,
+} from "@/pages/utils/constants";
 import { useEffect, useState } from "react";
 
 export default function Course() {
   const router = useRouter();
-  const { course } = router.query;
   const [students, setStudents] = useState(null);
   const [selectedStudents, setSelectedStudents] = useState([]);
+  const [date, setDate] = useState("");
+  const [remarks, setRemarks] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const { course } = router.query;
 
-  async function getRegisteredStudents() {
-    const response = await fetch(
-      TEST_URL + GET_REGISTERED_STUDENTS + `?=${course}`,
-      {
-        method: "GET",
-      }
-    );
+  async function getRegisteredStudents(course) {
+    const response = await fetch(BASE_URL + GET_REGISTERED_STUDENTS, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ courseCode: course }),
+    });
     const data = await response.json();
-    console.log(data);
-    setStudents(data);
+    setStudents(data.returnData);
+  }
+
+  async function addAttendance(setError) {
+    setError("");
+    setSuccess("");
+    if (date.length == 0 || remarks.length == 0) {
+      setError("One or more fields are empty");
+      return;
+    }
+    let attendanceData = {
+      stuId: selectedStudents,
+      facId: router.query.faculty,
+      date: date,
+      remarks: remarks,
+      cid: course,
+    };
+    console.log(attendanceData);
+    const data = await fetch(BASE_URL + ADD_ATTENDANCE, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(attendanceData),
+    });
+    const response = await data.json();
+    if (response.status === "success") setSuccess("Attendance Created.");
+    else setError("Try Again");
   }
 
   useEffect(() => {
-    getRegisteredStudents();
+    console.log(router.query.course);
+    getRegisteredStudents(router.query.course, router.query.faculty);
   }, []);
 
   return (
@@ -39,9 +76,9 @@ export default function Course() {
                 <div className="text-neutral-500 text-sm mb-2">Enter date</div>
                 <input
                   onChange={(e) => {
-                    // setCourseName(e.target.value);
-                    // setError(false);
-                    // setSuccess(false);
+                    setDate(e.target.value);
+                    setError("");
+                    setSuccess("");
                   }}
                   placeholder="DD/MM/YYYY"
                   className="placeholder:text-neutral-600  bg-neutral-900 rounded-md w-52 h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
@@ -51,13 +88,23 @@ export default function Course() {
                     // setCourseName(e.target.value);
                     // setError(false);
                     // setSuccess(false);
+                    setRemarks(e.target.value);
+                    setError("");
+                    setSuccess("");
                   }}
                   placeholder="Remarks"
                   className="placeholder:text-neutral-600  mt-6 bg-neutral-900 rounded-md w-52 h-36 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
-                <div className="bg-yellow-500 w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black">
+                <div
+                  onClick={() => {
+                    addAttendance(setError);
+                  }}
+                  className="bg-yellow-500 w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black"
+                >
                   Submit
                 </div>
+                <div className="text-red-500">{error}</div>
+                <div className="text-green-500">{success}</div>
               </div>
               <div className="ml-32">
                 <div className="text-neutral-500 text-sm mb-2 ">

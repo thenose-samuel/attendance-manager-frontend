@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TEST_URL, LOGIN } from "../utils/constants";
+import { TEST_URL, LOGIN, BASE_URL } from "../utils/constants";
 import { useRouter } from "next/router";
 
 function Login() {
@@ -93,7 +93,7 @@ async function handleSubmit(setState, setError, userName, password, router) {
     password: password,
   };
   try {
-    const data = await fetch(TEST_URL + LOGIN, {
+    const data = await fetch(BASE_URL + LOGIN, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,12 +104,18 @@ async function handleSubmit(setState, setError, userName, password, router) {
       throw new Error();
     }
 
-    const string = await data.json();
+    const response = await data.json();
     //console.log(string);
 
-    if (string.isExist == true) {
-      //console.log("in routing");
-      router.push("/student");
+    if (response.exist != null) {
+      const designation = response.exist.designation;
+      if (designation === "faculty") {
+        router.push(`/faculty?faculty=${response.exist.userId}`);
+      } else if (designation === "student") {
+        router.push(`/student/${response.exist.userId}`);
+      } else {
+        router.push(`/admin`);
+      }
     } else {
       throw new Error();
     }

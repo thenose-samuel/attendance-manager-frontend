@@ -9,3 +9,5 @@ export const CREATE_FACULTY = "/register";
 export const GET_COURSES = "/getCourses";
 export const GET_REGISTERED_STUDENTS = "/getRegisteredStudents";
 export const BASE_URL = "https://attendance-sofware.onrender.com";
+export const ADD_ATTENDANCE = "/addAttendance";
+export const GET_REPORT = "/getReport";

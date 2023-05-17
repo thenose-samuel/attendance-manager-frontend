@@ -1,16 +1,39 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import style from "./form.module.css";
-import { CREATE_STUDENT, GET_COURSES, TEST_URL } from "../utils/constants";
+import {
+  BASE_URL,
+  CREATE_STUDENT,
+  GET_COURSES,
+  GET_REPORT,
+  TEST_URL,
+} from "../utils/constants";
 import ShimmerSkeleton from "./shimmer";
 
-export default function CreateStudent() {
+export default function Student() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [status, setStatus] = useState("");
+  const [cid, setCid] = useState("");
+  const [dates, setDates] = useState([]);
+  const [attendDates, setAttendDates] = useState([]);
   const router = useRouter();
   const { sid } = router.query;
+
+  // async function getReport() {
+  //   let details = { sid, cid };
+  //   const data = await fetch(BASE_URL + GET_REPORT, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(details),
+  //   });
+  //   const response = await data.json();
+  //   // console.log(response);
+  // }
+
   return (
     <>
       <div className={style.font}>
@@ -28,13 +51,23 @@ export default function CreateStudent() {
                   Course Code
                 </div>
                 <input
+                  onChange={(e) => {
+                    setCid(e.target.value);
+                  }}
                   placeholder="Enter the course code"
                   className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
                 <div
                   onClick={() => {
                     setSubmitting(true);
-                    getCourses(sid, setSubmitting, setError);
+                    getReport(
+                      sid,
+                      cid,
+                      setSubmitting,
+                      setError,
+                      setDates,
+                      setAttendDates
+                    );
                   }}
                   className={`${
                     submitting ? "bg-neutral-700" : "bg-yellow-500"
@@ -48,7 +81,36 @@ export default function CreateStudent() {
                 <div className="font-bold text-xs text-green-400 mt-3">
                   {success}
                 </div>
-                {submitting ? <ShimmerSkeleton /> : <div></div>}
+                {submitting ? (
+                  <ShimmerSkeleton />
+                ) : dates.length === 0 ? (
+                  <div></div>
+                ) : (
+                  <div>
+                    <div>
+                      <div className="font-medium text-4xl">{dates.length}</div>
+                      <div className="text-neutral-700 font-bold mb-5">
+                        Classes Taken
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-medium text-4xl">
+                        {attendDates.length}
+                      </div>
+                      <div className="text-neutral-700 font-bold mb-5">
+                        Classes Attended
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-medium text-4xl">
+                        {Math.round((attendDates.length / dates.length) * 100)}%
+                      </div>
+                      <div className="text-neutral-700 font-bold mb-5">
+                        Attendence Percentage
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -58,13 +120,21 @@ export default function CreateStudent() {
   );
 }
 
-async function getCourses(sId, setSubmitting, setError) {
+async function getReport(
+  sid,
+  cid,
+  setSubmitting,
+  setError,
+  setDates,
+  setAttendDates
+) {
   try {
     setError("");
     const student = {
-      sId,
+      sid,
+      cid,
     };
-    const data = await fetch(TEST_URL + GET_COURSES, {
+    const data = await fetch(BASE_URL + GET_REPORT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,65 +142,15 @@ async function getCourses(sId, setSubmitting, setError) {
       body: JSON.stringify(student),
     });
     const response = await data.json();
-    // setStatus("Data has been fetched successfully");
+    if (response.status === "success") {
+      setDates(response.classesTaken);
+      setAttendDates(response.attended);
+    } else {
+      setError(response.status);
+    }
   } catch (e) {
     setError("An error occured please try again");
   } finally {
     setSubmitting(false);
   }
 }
-
-// import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-
-// export default function Home() {
-//   return (
-//     <>
-//       <div className="flex">
-//         <SideBar></SideBar>
-//         <div className="w-3 h-screen"></div>
-//         <div className="bg-red-800 w-10 h-10"></div>
-//       </div>
-//     </>
-//   );
-// }
-
-// function SideBar() {
-//   return (
-//     <div className="">
-//       <div className="h-screen bg-neutral-900 w-max p-6 pl-6 pt-4 border-neutral-800 border-solid border-x-2">
-//         <div>
-//           <div className="font-extrabold text-md mb-6">
-//             Welcome, {"<Student Name>"}
-//           </div>
-//           <div>
-//             <div className="text-neutral-600 text-xs font-medium mb-3">
-//               Select course from the dropdown below
-//             </div>
-//             <FormControl
-//               autoFocus={false}
-//               variant="filled"
-//               sx={{ minWidth: 250 }}
-//             >
-//               <InputLabel
-//                 id="demo-simple-select-filled-label"
-//                 className="text-sm"
-//               >
-//                 Select Course
-//               </InputLabel>
-//               <Select
-//                 labelId="demo-simple-select-filled-label"
-//                 id="demo-simple-select-filled"
-//                 value=""
-//                 onChange={() => {}}
-//               >
-//                 <MenuItem value={10}>CS 372</MenuItem>
-//                 <MenuItem value={20}>CE 372</MenuItem>
-//                 <MenuItem value={30}>HS 392</MenuItem>
-//               </Select>
-//             </FormControl>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
