@@ -37,9 +37,9 @@ export default function Student() {
   return (
     <>
       <div className={style.font}>
-        <div className="h-screen bg-neutral-900 w-96 pl-6 pr-6 pt-4 border-neutral-800 border-solid border-x-2">
+        <div className="h-screen bg-white w-96 pl-6 pr-6 pt-4 border-pink-800 border-solid border-x-2">
           <div>
-            <div className="font-extrabold text-2xl text-neutral-200">
+            <div className="font-extrabold text-2xl text-neutral-800">
               View Report
             </div>
             <div className="text-xs text-neutral-500 font-regular">
@@ -55,7 +55,7 @@ export default function Student() {
                     setCid(e.target.value);
                   }}
                   placeholder="Enter the course code"
-                  className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-800 max-w-full bg-white rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-neutral-800 font-regular text-sm p-2"
                 ></input>
                 <div
                   onClick={() => {
@@ -70,15 +70,15 @@ export default function Student() {
                     );
                   }}
                   className={`${
-                    submitting ? "bg-neutral-700" : "bg-yellow-500"
-                  } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black`}
+                    submitting ? "bg-neutral-700" : "bg-pink-500"
+                  } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-pink-700 duration-200 text-black`}
                 >
                   {submitting ? "Wait" : "Submit"}
                 </div>
-                <div className="font-bold text-xs text-red-400 mt-3">
+                <div className="font-bold text-xs text-neutral-400 mt-3">
                   {error}
                 </div>
-                <div className="font-bold text-xs text-green-400 mt-3">
+                <div className="font-bold text-xs text-neutral-400 mt-3">
                   {success}
                 </div>
                 {submitting ? (
@@ -88,13 +88,15 @@ export default function Student() {
                 ) : (
                   <div>
                     <div>
-                      <div className="font-medium text-4xl">{dates.length}</div>
+                      <div className="font-medium text-4xl text-neutral-800">
+                        {dates.length}
+                      </div>
                       <div className="text-neutral-700 font-bold mb-5">
                         Classes Taken
                       </div>
                     </div>
                     <div>
-                      <div className="font-medium text-4xl">
+                      <div className="font-medium text-4xl text-neutral-800">
                         {attendDates.length}
                       </div>
                       <div className="text-neutral-700 font-bold mb-5">
@@ -102,7 +104,7 @@ export default function Student() {
                       </div>
                     </div>
                     <div>
-                      <div className="font-medium text-4xl">
+                      <div className="font-medium text-4xl text-neutral-800">
                         {Math.round((attendDates.length / dates.length) * 100)}%
                       </div>
                       <div className="text-neutral-700 font-bold mb-5">

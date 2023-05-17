@@ -22,11 +22,8 @@ function AddFacultyModal({ show, onClose }) {
       return ReactDOM.createPortal(
         !fetching ? (
           <div className={style.font}>
-            <div
-              className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center backdrop-blur-md "
-              // onClick={() => onClose()}
-            >
-              <div className="bg-neutral-900 w-96 h-96 p-3 border-neutral-800 border-solid border-x-2 border-y-2">
+            <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center backdrop-blur-md ">
+              <div className="bg-white w-96 h-96 p-3 border-neutral-800 border-solid border-x-2 border-y-2">
                 <input
                   onChange={(e) => {
                     searchStudent(
@@ -37,7 +34,7 @@ function AddFacultyModal({ show, onClose }) {
                     );
                   }}
                   placeholder="Search"
-                  className="placeholder:text-neutral-600 mb-2 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600 mb-2 max-w-full bg-white rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-neutral-800 font-regular text-sm p-2"
                 ></input>
                 {/* <div>hello</div> */}
                 <div className="h-64  overflow-y-scroll">
@@ -70,16 +67,16 @@ function AddFacultyModal({ show, onClose }) {
                           key={student.userId}
                           className={`${
                             selectedFaculties.includes(student.userId)
-                              ? "bg-yellow-500 hover:bg-red-500"
-                              : "hover:bg-neutral-800"
+                              ? "bg-pink-500 hover:bg-red-500"
+                              : "hover:bg-pink-700"
                           } m-1 rounded-md p-2 cursor-pointer duration-200`}
                         >
                           <div>
                             <div
                               className={`font-bold text-sm pt-1 ${
                                 selectedFaculties.includes(student.userId)
-                                  ? "text-black"
-                                  : "text-white"
+                                  ? "text-white"
+                                  : "text-black"
                               }`}
                             >
                               {student.personName}
@@ -87,7 +84,7 @@ function AddFacultyModal({ show, onClose }) {
                             <div
                               className={`text-xs ${
                                 selectedFaculties.includes(student.userId)
-                                  ? "text-black"
+                                  ? "text-white"
                                   : "text-neutral-700"
                               }`}
                             >
@@ -110,9 +107,6 @@ function AddFacultyModal({ show, onClose }) {
                   >
                     DONE
                   </div>
-                  {/* <div className="text-yellow-400 font-bold text-xs pr-4 cursor-pointer hover:text-yellow-600 duration-200">
-                    DONE
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -123,8 +117,8 @@ function AddFacultyModal({ show, onClose }) {
               className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center backdrop-blur-md "
               // onClick={() => onClose()}
             >
-              <div className="bg-neutral-900 w-96 h-96 p-3 border-neutral-800 border-solid border-x-2 border-y-2 flex justify-center items-center">
-                <div className="font-bold text-sm">
+              <div className="bg-white w-96 h-96 p-3 border-neutral-800 border-solid border-x-2 border-y-2 flex justify-center items-center">
+                <div className="font-bold text-black text-sm">
                   Fetching faculty data...
                 </div>
               </div>

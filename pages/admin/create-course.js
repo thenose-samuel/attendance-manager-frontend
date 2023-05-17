@@ -26,9 +26,9 @@ export default function CreateCourse() {
         <StudentsDispatchContext.Provider value={studentDispatch}>
           <StudentsContext.Provider value={students}>
             <div className={style.font}>
-              <div className="h-screen bg-neutral-900 w-96 pl-6 pr-6 pt-4 border-neutral-800 border-solid border-x-2">
+              <div className="h-screen bg-white w-96 pl-6 pr-6 pt-4 border-pink-800 border-solid border-x-2">
                 <div>
-                  <div className="font-extrabold text-2xl text-neutral-200">
+                  <div className="font-extrabold text-2xl text-neutral-800">
                     Create Course
                   </div>
                   <div className="text-xs text-neutral-500 font-regular pt-2">
@@ -46,7 +46,7 @@ export default function CreateCourse() {
                           setSuccess(false);
                         }}
                         placeholder="Enter course name"
-                        className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                       ></input>
                       <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
                         Course ID
@@ -58,12 +58,12 @@ export default function CreateCourse() {
                           setSuccess(false);
                         }}
                         placeholder="Enter course ID"
-                        className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                       ></input>
                       <div className="flex">
                         <div
                           onClick={() => setAddFaculty(true)}
-                          className="text-xs font-bold pt-6 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
+                          className="text-xs font-bold pt-6 text-pink-400 hover:text-pink -600 duration-300 cursor-pointer"
                         >
                           Add Faculty
                         </div>
@@ -74,7 +74,7 @@ export default function CreateCourse() {
                       <div className="flex">
                         <div
                           onClick={() => setAddStudent(true)}
-                          className="text-xs font-bold pt-4 text-yellow-400 hover:text-yellow-600 duration-300 cursor-pointer"
+                          className="text-xs font-bold pt-4 text-pink-400 hover:text-pink-600 duration-300 cursor-pointer"
                         >
                           Add Student
                         </div>
@@ -96,8 +96,8 @@ export default function CreateCourse() {
                           );
                         }}
                         className={`${
-                          submitting ? "bg-neutral-700" : "bg-yellow-500"
-                        } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black`}
+                          submitting ? "bg-neutral-700" : "bg-pink-500"
+                        } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-pink-700 duration-200 text-black`}
                       >
                         {submitting ? "Wait" : "Submit"}
                       </div>

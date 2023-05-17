@@ -9,10 +9,10 @@ function Login() {
   const [error, setError] = useState("");
   const router = useRouter();
   return (
-    <main className="bg-black h-screen flex flex-col items-center justify-start">
+    <main className="bg-white h-screen flex flex-col items-center justify-start">
       <div className="pt-20 max-w-lg flex flex-col justify-start items-start">
         <div className="flex flex-col">
-          <div className="text-gray-300 font-montserrat text-4xl font-extrabold">
+          <div className="text-black font-montserrat text-4xl font-extrabold">
             Log In
           </div>
           <div className="text-neutral-500 font-medium text-xs pt-10 pb-6">
@@ -31,7 +31,7 @@ function Login() {
               setError("");
             }}
             placeholder="Enter your username"
-            className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-72 h-12 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-bold text-sm p-2"
+            className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-72 h-12 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-neutral-800 font-bold text-sm p-2"
           ></input>
           <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
             Password
@@ -44,13 +44,13 @@ function Login() {
               setError("");
             }}
             placeholder="Enter your password"
-            className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-72 h-12 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-bold text-sm p-2"
+            className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-72 h-12 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-neutral-800 font-bold text-sm p-2"
           ></input>
           {/* <input class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent ..."></input> */}
           <div
             className={`p-3 rounded-xl mt-6 bg-gradient-to-r duration-300 hover:rounded-md ${
-              state === "active" ? "bg-yellow-400" : "bg-neutral-800"
-            } bg-yellow-400`}
+              state === "active" ? "bg-pink-400" : "bg-neutral-800"
+            } bg-pink-400`}
           >
             {state === "active" ? (
               <div
@@ -73,12 +73,12 @@ function Login() {
           <div className="text-red-400  font-medium text-center pt-4 text-xs">
             {error}
           </div>
-          <div className="text-neutral-600  font-medium text-center pt-4 text-xs">
-            Account doesn`&apos;`t exist?{" "}
+          {/* <div className="text-neutral-600  font-medium text-center pt-4 text-xs">
+            Account doesn&apos;t exist?{" "}
             <span className="text-yellow-600 cursor-pointer text-xs">
               Contact Admin.
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>

@@ -47,12 +47,12 @@ export default function Faculty() {
         </div>
       ) : (
         <div className={style.font}>
-          <div className="w-screen h-screen bg-black flex flex-col items-center justify-center">
+          <div className="w-screen h-screen bg-white flex flex-col items-center justify-center">
             <div className="flex flex-col justify-center items-center">
-              <div className="text-neutral-200 font-montserrat text-4xl pb-10 font-bold">
+              <div className="text-neutral-800 font-montserrat text-4xl pb-10 font-bold">
                 Select Course to Mark Attendance
               </div>
-              <div className="w-80 rounded-lg bg-neutral-900">
+              <div className="w-80 rounded-lg bg-pink-900">
                 {courses.length == 0 ? (
                   <div className="text-center">
                     No courses registered for this faculty
@@ -69,12 +69,12 @@ export default function Faculty() {
                     >
                       <div
                         id="button"
-                        className="p-3 border-b-2 border-neutral-800 hover:bg-yellow-600  duration-300 cursor-pointer text-neutral-300 hover:text-black"
+                        className="p-3 border-b-2  duration-300 cursor-pointer text-neutral-300 hover:text-black"
                       >
                         <div className="font-montserrat text-sm font-medium">
                           {course.courseName}
                         </div>
-                        <div className="font-montserrat text-xs font-medium text-neutral-700">
+                        <div className="font-montserrat text-xs font-medium text-neutral-400">
                           {course.courseCode}
                         </div>
                       </div>
@@ -92,9 +92,9 @@ export default function Faculty() {
                   </div>
                 </div>
               </Link>
-              <div className="text-neutral-700 text-xs pt-2">
+              {/* <div className="text-neutral-700 text-xs pt-2">
                 You`&apos;`re currently in the faculty panel.
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

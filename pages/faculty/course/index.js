@@ -66,13 +66,13 @@ export default function Course() {
   }, []);
 
   return (
-    <div className={style.font}>
+    <div className={style.font} style={{ backgroundColor: "white" }}>
       <div className="flex flex-col justify-between h-screen  p-6">
-        <div className="flex justify-between border-b-2 h-screen">
-          <div className="border-r-2 w-screen">
-            <div className="flex">
+        <div className="flex justify-between border-b-2  h-screen">
+          <div className="w-screen">
+            <div className="flex justify-center">
               <div className="flex flex-col">
-                <div className="font-bold pb-5">New Attendance</div>
+                <div className="font-bold pb-5 text-black">New Attendance</div>
                 <div className="text-neutral-500 text-sm mb-2">Enter date</div>
                 <input
                   onChange={(e) => {
@@ -81,7 +81,7 @@ export default function Course() {
                     setSuccess("");
                   }}
                   placeholder="DD/MM/YYYY"
-                  className="placeholder:text-neutral-600  bg-neutral-900 rounded-md w-52 h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600  rounded-md w-52 h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
                 <input
                   onChange={(e) => {
@@ -93,13 +93,13 @@ export default function Course() {
                     setSuccess("");
                   }}
                   placeholder="Remarks"
-                  className="placeholder:text-neutral-600  mt-6 bg-neutral-900 rounded-md w-52 h-36 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600  mt-6 rounded-md w-52 h-36 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
                 ></input>
                 <div
                   onClick={() => {
                     addAttendance(setError);
                   }}
-                  className="bg-yellow-500 w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black"
+                  className="bg-pink-500 w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-pink-700 duration-200 text-black"
                 >
                   Submit
                 </div>
@@ -133,20 +133,20 @@ export default function Course() {
                           }}
                           className={`${
                             selectedStudents.includes(student.userId)
-                              ? "bg-yellow-500"
-                              : "bg-neutral-800"
-                          } mt-2  p-2 rounded-lg w-52 cursor-pointer group`}
+                              ? "bg-pink-500"
+                              : "bg-white"
+                          } mt-2 text-black  p-2 rounded-lg w-52 cursor-pointer group border-2 border-pink-300`}
                         >
                           <div
                             className={`${
                               selectedStudents.includes(student.userId)
                                 ? "group-hover:text-black"
-                                : "group-hover:text-yellow-500"
+                                : "group-hover:text-pink-500"
                             } text-sm font-bold  duration-200`}
                           >
                             {student.personName}
                           </div>
-                          <div className="text-xs text-neutral-500">
+                          <div className="text-xs text-neutral-600">
                             {student.userId}
                           </div>
                         </div>
@@ -158,7 +158,7 @@ export default function Course() {
             </div>
             <div></div>
           </div>
-          <div>
+          {/* <div>
             <div className="pb-4 pl-14 flex flex-col items-center h-96">
               <div className="pb-5 self-start font-bold text-sm">
                 Previous Attendance Data
@@ -173,15 +173,12 @@ export default function Course() {
                 <Attendance />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="pt-5">
           <div>Course Statistics</div>
-          <div>
-            <div className="text-neutral-500">40 students enrolled</div>
-            <div className="text-neutral-500">10 classes taken</div>
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

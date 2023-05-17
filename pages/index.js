@@ -12,23 +12,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Image
+      {/* <Image
         className="-z-10 absolute hidden md:grid md:object-cover h-screen"
         src={BackgroundImage}
         alt="splash-image"
-      ></Image>
-      <main className="bg-black h-screen flex flex-col pl-5 md:pl-14 z-10 md:bg-opacity-80">
+      ></Image> */}
+      <main className="bg-neutral-800 h-screen w-screen flex flex-col  z-10 md:bg-opacity-80 overflow-clip">
         <div className="flex justify-end">
-          <div className="text-gray-500 font-bold text-xs md:text-md pr-5 pt-2 cursor-pointer hover:text-yellow-600 duration-300 w-fit font-montserrat">
+          {/* <div className="text-gray-500 font-bold text-xs md:text-md pr-5 pt-2 cursor-pointer hover:text-yellow-600 duration-300 w-fit font-montserrat">
             about
-          </div>
+          </div> */}
         </div>
-        <div>
+        <div className="flex flex-col items-center">
           <div
             id="intro"
-            className="pt-24 md:pt-24 text-4xl md:text-6xl max-w-2xl font-montserrat font-extrabold text-gray-300"
+            className="pt-24 md:pt-24 text-4xl md:text-6xl w-screen text-center font-montserrat font-extrabold text-gray-300"
           >
-            Attendance management for the modern classroom
+            Attendance management system
           </div>
           <div
             id="button"
@@ -36,9 +36,9 @@ export default function Home() {
           >
             <Link
               href={"/login"}
-              className="bg-gray-300 w-fit p-3 rounded-xl duration-300 hover:rounded-sm hover:bg-yellow-600"
+              className="bg-gray-300 w-fit p-3 rounded-xl duration-300 hover:rounded-sm hover:bg-pink-500"
             >
-              DIVE IN
+              LOG IN
             </Link>
           </div>
         </div>

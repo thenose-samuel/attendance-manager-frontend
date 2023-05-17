@@ -18,9 +18,9 @@ export default function CreateStudent() {
   return (
     <>
       <div className={style.font}>
-        <div className="h-screen bg-neutral-900 w-96 pl-6 pr-6 pt-4 border-neutral-800 border-solid border-x-2">
+        <div className="h-screen bg-white w-96 pl-6 pr-6 pt-4 border-neutral-800 border-solid border-x-2">
           <div>
-            <div className="font-extrabold text-2xl text-neutral-200">
+            <div className="font-extrabold text-2xl text-neutral-800">
               Create Faculty
             </div>
             <div className="text-xs text-neutral-500 font-regular">
@@ -38,7 +38,7 @@ export default function CreateStudent() {
                     setSuccess("");
                   }}
                   placeholder="Enter the faculty's name"
-                  className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                 ></input>
                 <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
                   Faculty ID
@@ -50,7 +50,7 @@ export default function CreateStudent() {
                     setSuccess("");
                   }}
                   placeholder="Enter the faculty's ID"
-                  className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                 ></input>
                 <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
                   Password
@@ -63,7 +63,7 @@ export default function CreateStudent() {
                   }}
                   placeholder="Enter a password"
                   type="password"
-                  className=" placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className=" placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                 ></input>
                 <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
                   Confirm Password
@@ -76,7 +76,7 @@ export default function CreateStudent() {
                   }}
                   type="password"
                   placeholder="Confirm password"
-                  className="placeholder:text-neutral-600 max-w-full bg-neutral-900 rounded-md w-full h-10 border-2 border-neutral-800 focus:ring-yellow-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                  className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                 ></input>
                 <div
                   onClick={() => {
@@ -92,8 +92,8 @@ export default function CreateStudent() {
                     );
                   }}
                   className={`${
-                    submitting ? "bg-neutral-700" : "bg-yellow-500"
-                  } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-black`}
+                    submitting ? "bg-neutral-700" : "bg-pink-500"
+                  } w-20 rounded-sm text-center font-bold mt-5 text-xs p-2 cursor-pointer hover:bg-yellow-700 duration-200 text-white`}
                 >
                   {submitting ? "Wait" : "Submit"}
                 </div>
