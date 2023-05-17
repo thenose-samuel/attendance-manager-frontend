@@ -8,7 +8,7 @@ import {
   BASE_URL,
   GET_REGISTERED_STUDENTS,
   TEST_URL,
-} from "@/pages/utils/constants";
+} from "@/utils/constants";
 import { useEffect, useState } from "react";
 
 export default function Course() {
@@ -117,6 +117,7 @@ export default function Course() {
                     {students.map((student) => {
                       return (
                         <div
+                          key={student.userId}
                           onClick={() => {
                             if (selectedStudents.includes(student.userId)) {
                               let temp = [];

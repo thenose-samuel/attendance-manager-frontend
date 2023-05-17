@@ -6,9 +6,9 @@ import {
   FacultiesDispatchContext,
   StudentsContext,
   StudentsDispatchContext,
-} from "../utils/contexts";
+} from "../../utils/contexts";
 import AddFacultyModal from "./add-faculty-modal";
-import { BASE_URL, CREATE_COURSE, TEST_URL } from "../utils/constants";
+import { BASE_URL, CREATE_COURSE, TEST_URL } from "../../utils/constants";
 
 export default function CreateCourse() {
   const [error, setError] = useState(false);
@@ -169,7 +169,6 @@ async function createCourse(
   }
   try {
     setError(false);
-
 
     const sids = [];
     students.forEach((element) => {

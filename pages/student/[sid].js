@@ -7,7 +7,7 @@ import {
   GET_COURSES,
   GET_REPORT,
   TEST_URL,
-} from "../utils/constants";
+} from "../../utils/constants";
 import ShimmerSkeleton from "./shimmer";
 
 export default function Student() {

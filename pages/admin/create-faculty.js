@@ -5,7 +5,7 @@ import {
   CREATE_FACULTY,
   CREATE_STUDENT,
   TEST_URL,
-} from "../utils/constants";
+} from "../../utils/constants";
 
 export default function CreateStudent() {
   const [name, setName] = useState("");

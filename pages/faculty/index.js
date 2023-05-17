@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import style from "./font.module.css";
-import { BASE_URL, GET_COURSES, TEST_URL } from "../utils/constants";
+import { BASE_URL, GET_COURSES, TEST_URL } from "../../utils/constants";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -64,6 +64,7 @@ export default function Faculty() {
                 {courses.map((course) => {
                   return (
                     <Link
+                      key={course.courseCode}
                       href={`faculty/course/?course=${course.courseCode}&faculty=${router.query.faculty}`}
                     >
                       <div
@@ -92,7 +93,7 @@ export default function Faculty() {
                 </div>
               </Link>
               <div className="text-neutral-700 text-xs pt-2">
-                You're currently in the faculty panel.
+                You`&apos;`re currently in the faculty panel.
               </div>
             </div>
           </div>

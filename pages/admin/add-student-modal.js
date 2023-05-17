@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import style from "./modal.module.css";
-import { BASE_URL, STUDENTS, TEST_URL } from "../utils/constants";
-import { StudentsDispatchContext } from "../utils/contexts";
+import { BASE_URL, STUDENTS, TEST_URL } from "../../utils/constants";
+import { StudentsDispatchContext } from "../../utils/contexts";
 
 function AddStudentModal({ show, onClose }) {
   const [isBrowser, setIsBrowser] = useState(false);

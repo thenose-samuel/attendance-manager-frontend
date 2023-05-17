@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TEST_URL, LOGIN, BASE_URL } from "../utils/constants";
+import { TEST_URL, LOGIN, BASE_URL } from "../../utils/constants";
 import { useRouter } from "next/router";
 
 function Login() {
@@ -74,7 +74,7 @@ function Login() {
             {error}
           </div>
           <div className="text-neutral-600  font-medium text-center pt-4 text-xs">
-            Account doesn't exist?{" "}
+            Account doesn`&apos;`t exist?{" "}
             <span className="text-yellow-600 cursor-pointer text-xs">
               Contact Admin.
             </span>

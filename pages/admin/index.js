@@ -47,7 +47,7 @@ export default function Home() {
           <div className=" font-montserrat text-sm  font-medium ">Log Out</div>
         </div>
         <div className="text-neutral-700 text-xs pt-2">
-          You're currently in the admin panel.
+          You`&apos;`re currently in the admin panel.
         </div>
       </div>
     </div>

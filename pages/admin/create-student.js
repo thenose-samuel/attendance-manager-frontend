@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./form.module.css";
-import { BASE_URL, CREATE_STUDENT, TEST_URL } from "../utils/constants";
+import { BASE_URL, CREATE_STUDENT, TEST_URL } from "../../utils/constants";
 
 export default function CreateStudent() {
   const [name, setName] = useState("");
