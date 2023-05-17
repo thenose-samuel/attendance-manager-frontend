@@ -46,7 +46,7 @@ export default function CreateCourse() {
                           setSuccess(false);
                         }}
                         placeholder="Enter course name"
-                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                       ></input>
                       <div className="text-neutral-400 text-xs font-medium pb-2 pt-5">
                         Course ID
@@ -58,7 +58,7 @@ export default function CreateCourse() {
                           setSuccess(false);
                         }}
                         placeholder="Enter course ID"
-                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-gray-300 font-regular text-sm p-2"
+                        className="placeholder:text-neutral-600 max-w-full bg-white rounded-md w-full h-10 border-2 border-pink-800 focus:ring-pink-400 focus:ring-2 focus:outline-none text-black font-regular text-sm p-2"
                       ></input>
                       <div className="flex">
                         <div
